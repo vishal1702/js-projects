@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pure-knob: Test</title>
+    <script src="./app.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      // <![CDATA[
+
+      /*
+       * Demo code for knob element.
+       */
+
+      let score = 700;
+      let color;
+      if (score > 780) {
+        color = "#2fbe50";
+      } else if (score > 720 && score <= 780) {
+        color = "#2fbe50";
+      } else if (score >= 660 && score <= 720) {
+        color = "#d3cb04";
+      } else if (score < 660) {
+        color = "#f85b5b";
+      }
+
+      function demoKnob() {
+        // Create knob element, 300 x 300 px in size.
+        const knob = pureknob.createKnob(300, 300);
+
+        // Set properties.
+        knob.setProperty("angleStart", -0.75 * Math.PI);
+        knob.setProperty("angleEnd", 0.75 * Math.PI);
+        knob.setProperty("colorFG", color);
+        knob.setProperty("trackWidth", 0.1);
+        knob.setProperty("valMin", 300);
+        knob.setProperty("valMax", 900);
+
+        // Set initial value.
+        knob.setValue(score);
+
+        // Create element node.
+        const node = knob.node();
+
+        // Add it to the DOM.
+        const elem = document.getElementById("some_element");
+        elem.appendChild(node);
+      }
+
+      /*
+       * This is executed after the document finished loading.
+       */
+      function ready() {
+        demoKnob();
+      }
+
+      document.addEventListener("DOMContentLoaded", ready, false);
+      // ]]>
+    </script>
+  </head>
+  <body style="background-color: #444444">
+    <div id="some_element">
+      <div class="num">
+        <span class="num1">300</span>
+        <span class="num2">900</span>
+      </div>
+    </div>
+  </body>
+</html>
